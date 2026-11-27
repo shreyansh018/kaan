@@ -8,6 +8,8 @@ language, with the source named aloud.
 
 > Round 2 build · Build for Bharat · Theme: *Everyday access for all*
 
+**Live:** <https://kaan-sandy.vercel.app> · **Repo:** <https://github.com/shreyansh018/kaan>
+
 ---
 
 ## The problem this attacks

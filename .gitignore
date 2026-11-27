@@ -29,3 +29,5 @@ Thumbs.db
 # NOTE: public/audio/*.mp3 is intentionally committed.
 # The demo must play real Hindi audio with zero keys and zero network,
 # so the generated voice files ship inside the repo.
+
+.vercel
