@@ -1,0 +1,28 @@
+{
+  "name": "kaan",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Kaan — a voice-first fact-check for forwarded WhatsApp voice notes in India.",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "dev": "next dev -p 3000",
+    "build": "next build",
+    "postbuild": "node scripts/copy-standalone.mjs",
+    "start": "node .next/standalone/server.js",
+    "typecheck": "tsc --noEmit",
+    "audio": "python scripts/generate_audio.py"
+  },
+  "dependencies": {
+    "next": "^15.5.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "typescript": "^5.7.0"
+  }
+}

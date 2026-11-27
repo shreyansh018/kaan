@@ -1,0 +1,32 @@
+[
+  {
+    "id": "lemon",
+    "label": "नींबू पानी से कोरोना",
+    "lang": "Hindi",
+    "voice": "hi-IN-MadhurNeural",
+    "audio": "/audio/note-lemon.mp3",
+    "transcript": "Bhai suno, bahut zaroori baat hai. Garam paani mein nimbu daal kar subah khaali pet peena hai, corona bilkul khatam ho jata hai. Doctor ne bhi bola hai. Sabko forward karo, jaldi karo.",
+    "transcriptEn": "Listen, this is very important. Squeeze lemon into hot water and drink it on an empty stomach every morning — corona is completely cured. A doctor said so too. Forward it to everyone, quickly.",
+    "entryId": "lemon-corona"
+  },
+  {
+    "id": "board",
+    "label": "बोर्ड रिज़ल्ट दो हफ़्ते पहले",
+    "lang": "Hindi",
+    "voice": "hi-IN-SwaraNeural",
+    "audio": "/audio/note-board.mp3",
+    "transcript": "Breaking news! Is saal board ka result do hafte pehle aa raha hai. Date badal gayi hai, sab students ko bata do. Jaldi check karo.",
+    "transcriptEn": "Breaking news! Board results are coming two weeks early this year. The date has changed — tell every student. Check quickly.",
+    "entryId": "board-result"
+  },
+  {
+    "id": "hospital",
+    "label": "हॉस्पिटल की फ़र्ज़ी advisory",
+    "lang": "Hindi",
+    "voice": "hi-IN-MadhurNeural",
+    "audio": "/audio/note-hospital.mp3",
+    "transcript": "Yeh message sabhi parents ke liye zaroori hai. City hospital mein 40 bachche bharti hue hain kisi nayi bimari se. Hospital ne bola hai ki apne bachche school na bhejein. Sabko forward karein, jaldi.",
+    "transcriptEn": "This message is important for all parents. Forty children have been admitted to City Hospital with a new illness. The hospital has said not to send your children to school. Forward to everyone, quickly.",
+    "entryId": "hospital-advisory"
+  }
+]

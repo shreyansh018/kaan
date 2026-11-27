@@ -1,0 +1,14 @@
+services:
+  kaan:
+    build:
+      context: .
+    container_name: kaan
+    ports:
+      # host:container — the app must be reachable on port 3000.
+      - "3000:3000"
+    environment:
+      PORT: "3000"
+      HOSTNAME: "0.0.0.0"
+    # Intentionally no env_file and no secrets:
+    # `docker compose up` must start Kaan with an empty environment.
+    restart: unless-stopped

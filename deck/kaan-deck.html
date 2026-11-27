@@ -1,0 +1,458 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Kaan — Pitch Deck</title>
+<style>
+  @page { size: 297mm 167mm; margin: 0; }
+
+  :root {
+    --ink: #17140f;
+    --ink-2: #47413a;
+    --muted: #7c7568;
+    --accent: #2b2a78;
+    --line: #e2dccf;
+    --red: #a8251c;
+    --green: #0b6b4a;
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body { margin: 0; padding: 0; background: #fff; }
+
+  body {
+    font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+    color: var(--ink);
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .slide {
+    width: 297mm;
+    height: 167mm;
+    padding: 14mm 18mm 12mm;
+    page-break-after: always;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  .slide:last-child { page-break-after: auto; }
+
+  .kicker {
+    font-size: 8.5pt;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-weight: 700;
+    margin-bottom: 5mm;
+  }
+
+  h1 {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 34pt;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin: 0 0 5mm;
+    font-weight: 600;
+  }
+
+  h2 {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 21pt;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    margin: 0 0 4mm;
+    font-weight: 600;
+  }
+
+  p { font-size: 11.5pt; line-height: 1.55; margin: 0 0 3.2mm; color: var(--ink-2); }
+
+  strong { color: var(--ink); }
+
+  .accent { color: var(--accent); }
+
+  .lede { font-size: 13pt; line-height: 1.5; color: var(--ink); max-width: 210mm; }
+
+  .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 10mm; }
+
+  .cols-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 7mm; }
+
+  .card {
+    border: 1px solid var(--line);
+    border-radius: 3mm;
+    padding: 5mm 5.5mm;
+  }
+
+  .card h3 {
+    font-size: 10pt;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin: 0 0 2mm;
+    color: var(--accent);
+  }
+
+  .card p { font-size: 10.5pt; margin: 0; }
+
+  ul { margin: 0 0 3mm; padding-left: 5mm; }
+  li { font-size: 11.5pt; line-height: 1.5; color: var(--ink-2); margin-bottom: 2mm; }
+  li strong { color: var(--ink); }
+
+  .big-number {
+    font-family: Georgia, serif;
+    font-size: 30pt;
+    line-height: 1;
+    color: var(--accent);
+    margin-bottom: 1.5mm;
+  }
+
+  .small { font-size: 9.5pt; color: var(--muted); line-height: 1.45; }
+
+  table { width: 100%; border-collapse: collapse; margin-top: 1mm; }
+  th, td { text-align: left; vertical-align: top; padding: 2.6mm 3mm; border-bottom: 1px solid var(--line); font-size: 10.2pt; line-height: 1.4; }
+  th { font-size: 8.5pt; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); border-bottom: 1.5px solid var(--ink); padding-bottom: 2mm; }
+  td:first-child { font-weight: 650; color: var(--ink); width: 27%; }
+  td:last-child { color: var(--ink-2); }
+
+  .flow { display: flex; align-items: stretch; gap: 2.5mm; margin: 4mm 0 3mm; }
+  .step {
+    flex: 1;
+    border: 1px solid var(--line);
+    border-radius: 2.5mm;
+    padding: 3.5mm;
+    background: #fcfbf8;
+  }
+  .step .n { font-size: 8pt; font-weight: 800; color: var(--accent); letter-spacing: 0.1em; }
+  .step .t { font-size: 10.2pt; font-weight: 650; margin: 1.5mm 0 1mm; }
+  .step .d { font-size: 9pt; color: var(--muted); line-height: 1.4; }
+
+  .footer {
+    position: absolute;
+    left: 18mm;
+    right: 18mm;
+    bottom: 7mm;
+    display: flex;
+    justify-content: space-between;
+    font-size: 8pt;
+    color: var(--muted);
+    letter-spacing: 0.04em;
+    border-top: 1px solid var(--line);
+    padding-top: 2.5mm;
+  }
+
+  .title-slide { justify-content: center; }
+  .title-slide .word {
+    font-family: Georgia, serif;
+    font-size: 62pt;
+    line-height: 0.95;
+    letter-spacing: -0.03em;
+    margin-bottom: 3mm;
+  }
+  .title-slide .deva {
+    font-size: 20pt;
+    color: var(--accent);
+    margin-bottom: 8mm;
+  }
+  .rule { width: 34mm; height: 2.2pt; background: var(--accent); margin: 0 0 6mm; }
+
+  .quote {
+    border-left: 2.5pt solid var(--accent);
+    padding-left: 5mm;
+    font-family: Georgia, serif;
+    font-size: 14pt;
+    line-height: 1.45;
+    color: var(--ink);
+    margin: 3mm 0 4mm;
+  }
+
+  .pill {
+    display: inline-block;
+    font-size: 8.5pt;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 1.6mm 3mm;
+    border-radius: 10mm;
+    border: 1px solid var(--line);
+    color: var(--ink-2);
+    margin-right: 2mm;
+  }
+  .pill--red { color: var(--red); border-color: #efcfcb; background: #fceeed; }
+  .pill--green { color: var(--green); border-color: #c7e7d9; background: #e8f6f0; }
+</style>
+</head>
+<body>
+
+<!-- 1 -->
+<section class="slide title-slide">
+  <div class="kicker">Round 2 · Build for Bharat · Everyday access for all</div>
+  <div class="word">Kaan</div>
+  <div class="deva">सुनो, फिर मानो।</div>
+  <div class="rule"></div>
+  <p class="lede" style="max-width:170mm">
+    A voice-first fact-check for forwarded WhatsApp voice notes in India.
+    Forward a suspicious note; hear what is true in 20 seconds, in the same
+    language, with the source named aloud.
+  </p>
+  <p class="small" style="margin-top:8mm">
+    Working prototype · runs with <code>docker compose up</code> · no API keys required
+  </p>
+</section>
+
+<!-- 2 -->
+<section class="slide">
+  <div class="kicker">1 · Problem</div>
+  <h2>In India, misinformation arrives as audio — and every correction is text.</h2>
+  <div class="cols">
+    <div>
+      <p>
+        A forwarded WhatsApp voice note is the default format for anyone who does
+        not type comfortably: a 40-second warning, a rumour, a fake remedy, in
+        Hindi, Bhojpuri or Tamil.
+      </p>
+      <p>
+        Every fact-checker in the country works in <strong>text and English</strong>.
+        By the time an article is published — 24 to 72 hours later — the note has
+        already reached five family groups.
+      </p>
+      <p>
+        And the person who most needs the correction <strong>cannot read it</strong>.
+      </p>
+    </div>
+    <div>
+      <div class="quote">
+        This is a format problem, not a truth problem. The correction fails
+        because it is the wrong shape.
+      </div>
+      <p class="small">
+        A text link dies at the edge of a voice-note group. It has to be played,
+        not read — and it has to be forwardable back into the same thread.
+      </p>
+    </div>
+  </div>
+  <div class="footer"><span>Kaan · सुनो, फिर मानो</span><span>2</span></div>
+</section>
+
+<!-- 3 -->
+<section class="slide">
+  <div class="kicker">2 · Solution</div>
+  <h2>Same shape as the misinformation: audio in, audio out.</h2>
+  <div class="flow">
+    <div class="step"><div class="n">01</div><div class="t">Forward the note</div><div class="d">Any language, any length. Or speak it, or paste it.</div></div>
+    <div class="step"><div class="n">02</div><div class="t">One claim</div><div class="d">A 40-second ramble is reduced to the single checkable assertion.</div></div>
+    <div class="step"><div class="n">03</div><div class="t">Verified source</div><div class="d">Matched against PIB Fact Check, WHO, Ministry of Health.</div></div>
+    <div class="step"><div class="n">04</div><div class="t">20-second verdict</div><div class="d">Spoken in the same language. The source is named aloud.</div></div>
+    <div class="step"><div class="n">05</div><div class="t">Forward it back</div><div class="d">A clean audio clip that can return to the group it came from.</div></div>
+  </div>
+  <div class="cols" style="margin-top:4mm">
+    <div>
+      <p><strong>What the user hears (example):</strong></p>
+      <p class="small">
+        “आपके नोट में कहा गया है कि गर्म पानी में नींबू डालकर पीने से कोरोना खत्म हो
+        जाता है। WHO के COVID-19 mythbusters के मुताबिक यह गलत है। … Source: WHO, 2020।”
+      </p>
+    </div>
+    <div>
+      <p><strong>And when it cannot verify:</strong></p>
+      <p class="small">
+        “हम इसे verify नहीं कर पाए। … बिना सोर्स के हम सच या झूठ नहीं कहेंगे।”
+        No verdict without a named source — enforced in code, not in a prompt.
+      </p>
+    </div>
+  </div>
+  <div class="footer"><span>Kaan · सुनो, फिर मानो</span><span>3</span></div>
+</section>
+
+<!-- 4 -->
+<section class="slide">
+  <div class="kicker">3 · Who it is for</div>
+  <h2>Two people, and they are different people.</h2>
+  <div class="cols-3">
+    <div class="card">
+      <h3>The listener</h3>
+      <div class="big-number">100M+</div>
+      <p>
+        Our estimate of adults in tier-2 and tier-3 India who receive forwarded
+        voice notes but rarely read English text. They hear a claim, believe it
+        within a minute, and forward it on.
+      </p>
+    </div>
+    <div class="card">
+      <h3>The family fact-checker</h3>
+      <div class="big-number">10s of M</div>
+      <p>
+        Usually the 25-year-old who gets forwarded “is this true?” several times
+        a week, spends twenty minutes searching, and is ignored — a link is not
+        an answer.
+      </p>
+    </div>
+    <div class="card">
+      <h3>The group</h3>
+      <div class="big-number">150–250</div>
+      <p>
+        People in one family or village group. A single verdict reaches all of
+        them, because audio is the one format the group actually plays.
+      </p>
+    </div>
+  </div>
+  <p style="margin-top:6mm">
+    <strong>Beachhead:</strong> one language (Hindi), one vertical (health
+    misinformation), one district. Frequency: several notes a week, spiking
+    during elections, outbreaks and exam-result season.
+  </p>
+  <div class="footer"><span>Kaan · सुनो, फिर मानो</span><span>4</span></div>
+</section>
+
+<!-- 5 -->
+<section class="slide">
+  <div class="kicker">4 · What we built</div>
+  <h2>A working prototype of one core flow — not a mockup.</h2>
+  <div class="cols">
+    <div>
+      <ul>
+        <li><strong>3 bundled Hindi voice notes</strong> with real neural audio, committed to the repo.</li>
+        <li><strong>10 curated verified claims</strong> with named sources and dates.</li>
+        <li><strong>Claim extraction + matching</strong> written from scratch: weighted token signatures, split by script, 1–5 ms per check.</li>
+        <li><strong>Refusal path</strong> with its own spoken answer.</li>
+        <li><strong>Audio verdict</strong> out: 20–26 seconds, source named aloud.</li>
+        <li><strong>Forward actions</strong>: download the clip, or share via WhatsApp.</li>
+      </ul>
+    </div>
+    <div>
+      <div class="card" style="margin-bottom:4mm">
+        <h3>Runs anywhere</h3>
+        <p>
+          <code>docker compose up</code> → port 3000. No <code>.env</code>, no
+          secret keys, no network calls at runtime. ~2,960 lines of our own code.
+        </p>
+      </div>
+      <div class="card">
+        <h3>Verified in the container</h3>
+        <p>
+          Home page, CSS, audio files and the check API all return 200 inside the
+          built image; the local matcher answers in single-digit milliseconds.
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="footer"><span>Kaan · सुनो, फिर मानो</span><span>5</span></div>
+</section>
+
+<!-- 6 -->
+<section class="slide">
+  <div class="kicker">5 · What it depends on</div>
+  <h2>Every dependency has a fallback. None of them can take the product down.</h2>
+  <table>
+    <thead>
+      <tr><th>Dependency</th><th>Used for</th><th>If it gets costly or stops working</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Verified sources<br/><span class="small">PIB Fact Check, WHO, MoHFW</span></td>
+        <td>The verdict itself</td>
+        <td>The corpus is curated and versioned in the repo, not scraped live. If a source goes offline, affected claims are pulled and the note returns <em>unverified</em> — the refusal path is the fallback.</td>
+      </tr>
+      <tr>
+        <td>Bundled TTS audio<br/><span class="small">pre-generated, committed</span></td>
+        <td>Verdict voice</td>
+        <td>No runtime dependency at all for known claims. New text falls back to the browser's own Hindi voice, then to on-screen text.</td>
+      </tr>
+      <tr>
+        <td>Browser speech recognition<br/><span class="small">Web Speech API</span></td>
+        <td>Live microphone input</td>
+        <td>Optional enhancement. Every bundled note ships with its transcript, and the paste box works everywhere.</td>
+      </tr>
+      <tr>
+        <td>Optional LLM<br/><span class="small">OpenAI, if a key exists</span></td>
+        <td>Claim extraction</td>
+        <td>Off by default. The local rule-based extractor is the default path; a failed or rate-limited call silently falls back to it.</td>
+      </tr>
+      <tr>
+        <td>WhatsApp<br/><span class="small">production delivery</span></td>
+        <td>Receiving notes and replying</td>
+        <td>Business API cost and policy risk are real. The logic is channel-agnostic: SMS and IVR can carry the same audio verdict for feature phones.</td>
+      </tr>
+    </tbody>
+  </table>
+  <p class="small" style="margin-top:4mm">
+    Cost shape: the demo path has zero marginal cost. At scale, speech-to-text and
+    text-to-speech dominate — so verdicts are cached, trending claims are
+    pre-computed, and the refusal path avoids paid calls entirely.
+  </p>
+  <div class="footer"><span>Kaan · सुनो, फिर मानो</span><span>6</span></div>
+</section>
+
+<!-- 7 -->
+<section class="slide">
+  <div class="kicker">6 · Launch plan</div>
+  <h2>Start where the forwards already travel.</h2>
+  <div class="cols-3">
+    <div class="card">
+      <h3>Weeks 0–6 · one district</h3>
+      <p>
+        One language, one vertical: health misinformation in Hindi. Partner with
+        two regional newsrooms and one NGO network. Recruit 50 community verifiers
+        — teachers, ASHA workers, college students — to put the number into groups
+        they are already in.
+      </p>
+    </div>
+    <div class="card">
+      <h3>Months 2–3 · prove the loop</h3>
+      <p>
+        Track re-forward rate (target 30%), time-to-correction (under five
+        minutes) and seven-day repeat use (target 40%). Publish the refusal rate.
+        Add Marathi and Tamil.
+      </p>
+    </div>
+    <div class="card">
+      <h3>Months 6–12 · scale</h3>
+      <p>
+        WhatsApp Business API, newsroom syndication, IVR for feature phones.
+        Revenue from newsroom licensing and CSR partnerships — not from the
+        people who need the correction.
+      </p>
+    </div>
+  </div>
+  <div class="quote" style="margin-top:6mm">
+    Every verdict is an audio ad inside the exact group it corrects. The product
+    distributes itself in the format it defends.
+  </div>
+  <div class="footer"><span>Kaan · सुनो, फिर मानो</span><span>7</span></div>
+</section>
+
+<!-- 8 -->
+<section class="slide">
+  <div class="kicker">7 · Risk</div>
+  <h2>The main risk is being confidently wrong.</h2>
+  <div class="cols">
+    <div>
+      <p>
+        A fact-checker that errs once is worse than none: it launders a false
+        claim through institutional authority, and audio makes that wrong verdict
+        maximally shareable.
+      </p>
+      <p>
+        A small corpus also means high refusal rates on novel local claims — and
+        a fact-checker that says “I don't know” too often loses the group.
+      </p>
+    </div>
+    <div>
+      <ul>
+        <li><strong>No verdict without a named source</strong>, spoken aloud in the audio.</li>
+        <li><strong>Refusal is a first-class answer</strong>, with its own voice and screen.</li>
+        <li><strong>Human review</strong> before any new claim enters the corpus.</li>
+        <li><strong>No politics, no opinions, no medical advice</strong> beyond quoting the source.</li>
+        <li><strong>Refusal rate published</strong>, so the guardrail is measured, not assumed.</li>
+      </ul>
+    </div>
+  </div>
+  <p style="margin-top:5mm">
+    <span class="pill pill--red">Galat</span>
+    <span class="pill pill--green">Refuses when it cannot verify</span>
+  </p>
+  <div class="footer"><span>Kaan · सुनो, फिर मानो</span><span>8</span></div>
+</section>
+
+</body>
+</html>
