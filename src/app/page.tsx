@@ -55,7 +55,10 @@ export default function HomePage() {
 
   const saveRecent = useCallback((item: CheckResult) => {
     setRecent((previous) => {
-      const next = [item, ...previous.filter((entry) => entry.id !== item.id)].slice(0, 4);
+      const next = [
+        item,
+        ...previous.filter((entry) => entry.id !== item.id),
+      ].slice(0, 4);
       try {
         window.localStorage.setItem(RECENT_KEY, JSON.stringify(next));
       } catch {
@@ -92,10 +95,14 @@ export default function HomePage() {
           new Promise((resolve) => window.setTimeout(resolve, 1600)),
         ]);
 
-        const data = (await response.json()) as CheckResult & { error?: string };
+        const data = (await response.json()) as CheckResult & {
+          error?: string;
+        };
 
         if (!response.ok || data.error) {
-          throw new Error(typeof data.error === "string" ? data.error : "check_failed");
+          throw new Error(
+            typeof data.error === "string" ? data.error : "check_failed",
+          );
         }
 
         setResult(data);
@@ -103,7 +110,9 @@ export default function HomePage() {
         saveRecent(data);
         window.scrollTo({ top: 0, behavior: "smooth" });
       } catch {
-        setError("कुछ गड़बड़ हो गई। दोबारा कोशिश करें। (Something went wrong — try again.)");
+        setError(
+          "कुछ गड़बड़ हो गई। दोबारा कोशिश करें। (Something went wrong — try again.)",
+        );
         setPhase("home");
       } finally {
         timers.forEach((timer) => window.clearTimeout(timer));
@@ -137,22 +146,23 @@ export default function HomePage() {
           </div>
         </div>
         <span className={`chip ${engine === "llm" ? "chip--on" : ""}`}>
-          {engine === "llm" ? "AI extraction on" : "Local matcher · no key needed"}
+          {engine === "llm"
+            ? "AI extraction on"
+            : "Local matcher · no key needed"}
         </span>
       </header>
 
       <section className="hero">
-        <p className="eyebrow">Round 2 · Build for Bharat · voice-first prototype</p>
         <h1>
           एक वॉइस नोट भेजिए।
           <br />
           <em>20 सेकंड में सच।</em>
         </h1>
         <p className="lede">
-          Forwarded WhatsApp voice notes are how misinformation travels in India —
-          and every fact-checker only reads text. Kaan listens to the note, finds
-          the one checkable claim, and answers in the same language, with the
-          source named aloud.
+          Forwarded WhatsApp voice notes are how misinformation travels in India
+          — and every fact-checker only reads text. Kaan listens to the note,
+          finds the one checkable claim, and answers in the same language, with
+          the source named aloud.
         </p>
       </section>
 
@@ -175,7 +185,10 @@ export default function HomePage() {
           </div>
 
           <div className="composer">
-            <Recorder onTranscript={(value) => setText(value)} disabled={phase !== "home"} />
+            <Recorder
+              onTranscript={(value) => setText(value)}
+              disabled={phase !== "home"}
+            />
 
             <div className="composer-input">
               <label className="composer-label" htmlFor="note">
@@ -219,21 +232,29 @@ export default function HomePage() {
                 <span className="step-num">1</span>
                 <div>
                   <strong>Listen</strong>
-                  <p>Transcribes the note in the language it was actually spoken in.</p>
+                  <p>
+                    Transcribes the note in the language it was actually spoken
+                    in.
+                  </p>
                 </div>
               </li>
               <li>
                 <span className="step-num">2</span>
                 <div>
                   <strong>One claim</strong>
-                  <p>Pulls the single checkable assertion out of a 40-second ramble.</p>
+                  <p>
+                    Pulls the single checkable assertion out of a 40-second
+                    ramble.
+                  </p>
                 </div>
               </li>
               <li>
                 <span className="step-num">3</span>
                 <div>
                   <strong>Check &amp; speak</strong>
-                  <p>Matches verified sources and replies in 20 seconds of audio.</p>
+                  <p>
+                    Matches verified sources and replies in 20 seconds of audio.
+                  </p>
                 </div>
               </li>
             </ol>
@@ -276,7 +297,9 @@ export default function HomePage() {
                         setPhase("result");
                       }}
                     >
-                      <span className={`recent-dot recent-dot--${item.verdict}`}>
+                      <span
+                        className={`recent-dot recent-dot--${item.verdict}`}
+                      >
                         <RecentDot verdict={item.verdict} />
                       </span>
                       <span className="recent-title">{item.title}</span>
@@ -294,8 +317,8 @@ export default function HomePage() {
 
       <footer className="footer">
         <span>
-          Kaan · Round 2 build · {corpusSize > 0 ? corpusSize : 10} curated verified
-          claims · audio bundled, no API key required
+          Kaan · Round 2 build · {corpusSize > 0 ? corpusSize : 10} curated
+          verified claims · audio bundled, no API key required
         </span>
       </footer>
     </main>
