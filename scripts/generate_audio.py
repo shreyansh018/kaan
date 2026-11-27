@@ -43,8 +43,19 @@ async def synth(text: str, voice: str, rate: str, out: Path) -> None:
 async def main() -> None:
     OUT.mkdir(parents=True, exist_ok=True)
 
+    # Optional argument: regenerate only the given entry ids, so editing one
+    # verdict does not re-synthesise (and churn) all fourteen files.
+    only = set(sys.argv[1:])
+
     seeds = json.loads((DATA / "seeds.json").read_text(encoding="utf-8"))
     corpus = json.loads((DATA / "corpus.json").read_text(encoding="utf-8"))
+
+    if only:
+        seeds = [seed for seed in seeds if seed["id"] in only]
+        corpus = [entry for entry in corpus if entry["id"] in only]
+        missing = only - {item["id"] for item in seeds} - {item["id"] for item in corpus}
+        if missing:
+            sys.exit(f"unknown id(s): {', '.join(sorted(missing))}")
 
     print("Forwarded voice notes (slightly hurried, like a real WhatsApp forward):")
     for seed in seeds:
@@ -64,8 +75,9 @@ async def main() -> None:
             OUT / f"verdict-{entry['id']}.mp3",
         )
 
-    print("Refusal audio:")
-    await synth(REFUSAL_HI, VERDICT_VOICE, "-2%", OUT / "verdict-unverified.mp3")
+    if not only or "unverified" in only:
+        print("Refusal audio:")
+        await synth(REFUSAL_HI, VERDICT_VOICE, "-2%", OUT / "verdict-unverified.mp3")
 
     print(f"\nDone. {len(list(OUT.glob('*.mp3')))} files in public/audio")
 

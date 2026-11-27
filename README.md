@@ -60,7 +60,7 @@ Three real Hindi voice notes are bundled. Press play to hear the forward, then
 | --- | --- |
 | नींबू पानी से कोरोना | **गलत** — WHO mythbusters |
 | बोर्ड रिज़ल्ट दो हफ़्ते पहले | **सत्यापित नहीं हो पाया** — no official date found |
-| हॉस्पिटल की फ़र्ज़ी advisory | **गलत** — PIB Fact Check |
+| हॉस्पिटल की फ़र्ज़ी advisory | **गलत** — no official handle; PIB has flagged this pattern |
 
 Or paste / type any note. Anything that does not match a verified claim returns
 the refusal path instead of a guess — that is the product working correctly.

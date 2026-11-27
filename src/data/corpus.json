@@ -58,15 +58,15 @@
     "verdict": "galat",
     "claimHi": "सिटी हॉस्पिटल में नई बीमारी से 40 बच्चे भर्ती, स्कूल बंद करने की सलाह",
     "claimEn": "Forty children admitted to City Hospital with a new illness; schools told to close",
-    "scriptHi": "आपके नोट में एक हॉस्पिटल के नाम से advisory भेजी गई है। PIB Fact Check के मुताबिक यह advisory फ़र्ज़ी है — उस हॉस्पिटल ने ऐसी कोई सूचना जारी नहीं की। बिना आधिकारिक हैंडल या वेबसाइट के ऐसी advisory फ़ॉरवर्ड न करें। Source: PIB Fact Check, 2024।",
-    "scriptEn": "Your note forwards an advisory in a hospital's name. PIB Fact Check says it is fake — the hospital issued no such notice. Do not forward advisories that do not come from an official handle or website. Source: PIB Fact Check, 2024.",
+    "scriptHi": "आपके नोट में एक हॉस्पिटल के नाम से advisory भेजी गई है। यह किसी आधिकारिक हैंडल या वेबसाइट से नहीं आई। PIB Fact Check ने ऐसी कई बिना सोर्स वाली advisories को फ़र्ज़ी पाया है। इसलिए इसे सच न मानें, और बिना सोर्स के फ़ॉरवर्ड न करें। Source: PIB Fact Check।",
+    "scriptEn": "Your note forwards an advisory in a hospital's name — 40 children admitted, schools to close. It did not come from any official handle or website. PIB Fact Check has found many such unsourced advisories to be fake. Do not treat it as true, and do not forward it without an official source. Source: PIB Fact Check.",
     "sources": [
       {
         "name": "PIB Fact Check",
         "date": "2024",
         "url": "https://pib.gov.in/factcheck.aspx",
-        "noteHi": "हॉस्पिटल के नाम से भेजी गई advisory फ़र्ज़ी पाई गई।",
-        "noteEn": "The advisory circulated in the hospital's name was found to be fake."
+        "noteHi": "बिना आधिकारिक हैंडल वाली ऐसी advisories फ़र्ज़ी पाई गई हैं।",
+        "noteEn": "Advisories circulated without an official handle have been found to be fake."
       }
     ],
     "audio": "/audio/verdict-hospital-advisory.mp3"
