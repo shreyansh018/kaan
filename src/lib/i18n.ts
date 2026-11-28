@@ -21,6 +21,7 @@ const hi = {
   chipLlm: "AI extraction on",
   chipLocal: "Local matcher · no key needed",
 
+  eyebrow: "Round 2 · Build for Bharat · voice-first prototype",
   heroLine1: "एक वॉइस नोट भेजिए।",
   heroLine2: "20 सेकंड में सच।",
   lede: "Forwarded WhatsApp voice notes are how misinformation travels in India — and every fact-checker only reads text. Kaan listens to the note, finds the one checkable claim, and answers in the same language, with the source named aloud.",
@@ -146,6 +147,7 @@ const en: typeof hi = {
   chipLlm: "AI extraction on",
   chipLocal: "Local matcher · no key needed",
 
+  eyebrow: "Round 2 · Build for Bharat · voice-first prototype",
   heroLine1: "Send a voice note.",
   heroLine2: "The truth in 20 seconds.",
   lede: "Forwarded WhatsApp voice notes are how misinformation travels in India — and every fact-checker only reads text. Kaan listens to the note, finds the one checkable claim, and answers in the same language, with the source named aloud.",
