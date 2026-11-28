@@ -21,11 +21,9 @@ const hi = {
   chipLlm: "AI extraction on",
   chipLocal: "Local matcher · no key needed",
 
-  eyebrow: "Round 2 · Build for Bharat · voice-first prototype",
   heroLine1: "एक वॉइस नोट भेजिए।",
   heroLine2: "20 सेकंड में सच।",
-  lede:
-    "Forwarded WhatsApp voice notes are how misinformation travels in India — and every fact-checker only reads text. Kaan listens to the note, finds the one checkable claim, and answers in the same language, with the source named aloud.",
+  lede: "Forwarded WhatsApp voice notes are how misinformation travels in India — and every fact-checker only reads text. Kaan listens to the note, finds the one checkable claim, and answers in the same language, with the source named aloud.",
 
   tryTitle: "Try a forwarded note",
   tryHint: "3 bundled notes · works offline",
@@ -36,9 +34,18 @@ const hi = {
 
   howTitle: "कैसे काम करता है",
   steps: [
-    { title: "Listen", body: "Transcribes the note in the language it was actually spoken in." },
-    { title: "One claim", body: "Pulls the single checkable assertion out of a 40-second ramble." },
-    { title: "Check & speak", body: "Matches verified sources and replies in 20 seconds of audio." },
+    {
+      title: "Listen",
+      body: "Transcribes the note in the language it was actually spoken in.",
+    },
+    {
+      title: "One claim",
+      body: "Pulls the single checkable assertion out of a 40-second ramble.",
+    },
+    {
+      title: "Check & speak",
+      body: "Matches verified sources and replies in 20 seconds of audio.",
+    },
   ],
 
   rulesTitle: "Kaan क्या नहीं करेगा",
@@ -58,8 +65,10 @@ const hi = {
   recorderUnsupportedTitle: "Live recording is not available in this browser",
   recorderUnsupportedBody:
     "Chrome and Edge support it. You can still upload an audio file or paste the note below — the check works exactly the same.",
-  recorderErrorMic: "Mic से सुन नहीं पाए। नीचे लिखकर या फ़ाइल अपलोड करके भेजें।",
-  recorderErrorStart: "Mic शुरू नहीं हो पाया। नीचे लिखकर या फ़ाइल अपलोड करके भेजें।",
+  recorderErrorMic:
+    "Mic से सुन नहीं पाए। नीचे लिखकर या फ़ाइल अपलोड करके भेजें।",
+  recorderErrorStart:
+    "Mic शुरू नहीं हो पाया। नीचे लिखकर या फ़ाइल अपलोड करके भेजें।",
   recorderAria: "वॉइस नोट रिकॉर्ड करें",
   recorderStopAria: "रिकॉर्डिंग रोकें",
   recognitionLang: "पहचान की भाषा",
@@ -99,7 +108,8 @@ const hi = {
   back: "नया नोट",
   verdictSubUnverified:
     "सोर्स नहीं मिला, इसलिए हमने सच या झूठ नहीं कहा — बिना सोर्स के कोई verdict नहीं।",
-  verdictSubVerified: "एक claim मिला, verified सोर्स से मिलाया गया, और जवाब आपकी भाषा में।",
+  verdictSubVerified:
+    "एक claim मिला, verified सोर्स से मिलाया गया, और जवाब आपकी भाषा में।",
   claimEyebrow: "एक claim मिला",
   whatsapp: "WhatsApp पर भेजें",
   audioBtn: "Audio",
@@ -136,11 +146,9 @@ const en: typeof hi = {
   chipLlm: "AI extraction on",
   chipLocal: "Local matcher · no key needed",
 
-  eyebrow: "Round 2 · Build for Bharat · voice-first prototype",
   heroLine1: "Send a voice note.",
   heroLine2: "The truth in 20 seconds.",
-  lede:
-    "Forwarded WhatsApp voice notes are how misinformation travels in India — and every fact-checker only reads text. Kaan listens to the note, finds the one checkable claim, and answers in the same language, with the source named aloud.",
+  lede: "Forwarded WhatsApp voice notes are how misinformation travels in India — and every fact-checker only reads text. Kaan listens to the note, finds the one checkable claim, and answers in the same language, with the source named aloud.",
 
   tryTitle: "Try a forwarded note",
   tryHint: "3 bundled notes · works offline",
@@ -151,9 +159,18 @@ const en: typeof hi = {
 
   howTitle: "How it works",
   steps: [
-    { title: "Listen", body: "Transcribes the note in the language it was actually spoken in." },
-    { title: "One claim", body: "Pulls the single checkable assertion out of a 40-second ramble." },
-    { title: "Check & speak", body: "Matches verified sources and replies in 20 seconds of audio." },
+    {
+      title: "Listen",
+      body: "Transcribes the note in the language it was actually spoken in.",
+    },
+    {
+      title: "One claim",
+      body: "Pulls the single checkable assertion out of a 40-second ramble.",
+    },
+    {
+      title: "Check & speak",
+      body: "Matches verified sources and replies in 20 seconds of audio.",
+    },
   ],
 
   rulesTitle: "What Kaan will not do",
@@ -173,8 +190,10 @@ const en: typeof hi = {
   recorderUnsupportedTitle: "Live recording is not available in this browser",
   recorderUnsupportedBody:
     "Chrome and Edge support it. You can still upload an audio file or paste the note below — the check works exactly the same.",
-  recorderErrorMic: "We couldn't hear the mic. Type the note or upload a file instead.",
-  recorderErrorStart: "The mic didn't start. Type the note or upload a file instead.",
+  recorderErrorMic:
+    "We couldn't hear the mic. Type the note or upload a file instead.",
+  recorderErrorStart:
+    "The mic didn't start. Type the note or upload a file instead.",
   recorderAria: "Record a voice note",
   recorderStopAria: "Stop recording",
   recognitionLang: "Recognition language",
@@ -214,7 +233,8 @@ const en: typeof hi = {
   back: "New note",
   verdictSubUnverified:
     "No source found, so we did not call it true or false — no verdict without a source.",
-  verdictSubVerified: "One claim found, matched to a verified source, answered in your language.",
+  verdictSubVerified:
+    "One claim found, matched to a verified source, answered in your language.",
   claimEyebrow: "One claim found",
   whatsapp: "Send on WhatsApp",
   audioBtn: "Audio",
@@ -238,7 +258,8 @@ const en: typeof hi = {
   audioLabel: "Hear the verdict",
   audioPlayAria: "Play verdict",
   audioPauseAria: "Pause verdict",
-  audioWarn: "This device has no voice for this language — the verdict text is above.",
+  audioWarn:
+    "This device has no voice for this language — the verdict text is above.",
   footer: (n: number) =>
     `Kaan · Round 2 build · ${n} curated verified claims · audio bundled, no API key required`,
 };
