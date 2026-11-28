@@ -1,3 +1,4 @@
+import refusalsJson from "@/data/refusals.json";
 import type { CheckResult, CorpusEntry, Engine, Verdict } from "./types";
 
 /**
@@ -18,13 +19,17 @@ export const CHECKED_AGAINST = [
   "NPCI",
 ];
 
-export const REFUSAL_HI =
-  "हम इसे verify नहीं कर पाए। हमने PIB Fact Check, WHO और स्वास्थ्य मंत्रालय के verified रिकॉर्ड चेक किए, लेकिन इस दावे का कोई भरोसेमंद सोर्स नहीं मिला। बिना सोर्स के हम सच या झूठ नहीं कहेंगे। अगर आपके पास ओरिजिनल सोर्स है, तो भेजें।";
+// One source of truth, shared with scripts/generate_audio.py.
+const REFUSALS = refusalsJson as unknown as { hi: string; en: string };
 
-export const REFUSAL_EN =
-  "We couldn't verify this. We checked PIB Fact Check, WHO and Ministry of Health records and found no credible source for this claim. Without a source we won't call it true or false. If you have the original source, send it.";
+export const REFUSAL_HI = REFUSALS.hi;
+export const REFUSAL_EN = REFUSALS.en;
 
 export const REFUSAL_AUDIO = "/audio/verdict-unverified.mp3";
+export const REFUSAL_AUDIO_EN = "/audio/verdict-unverified-en.mp3";
+
+export const REFUSAL_TITLE = "कोई verified सोर्स नहीं मिला";
+export const REFUSAL_TITLE_EN = "No verified source found";
 
 function newId(): string {
   try {
@@ -42,22 +47,26 @@ type BuildArgs = {
   ms: number;
 };
 
-export function buildFromEntry(args: BuildArgs & { entry: CorpusEntry; confidence: number }): CheckResult {
+export function buildFromEntry(
+  args: BuildArgs & { entry: CorpusEntry; confidence: number },
+): CheckResult {
   const { entry, claim, confidence, engine, seedId, transcript, ms } = args;
-  const audio =
-    entry.audio ??
-    (entry.verdict === "unverified" ? REFUSAL_AUDIO : null);
+  const audio = entry.audio ?? (entry.verdict === "unverified" ? REFUSAL_AUDIO : null);
+  const audioEn =
+    entry.audioEn ?? (entry.verdict === "unverified" ? REFUSAL_AUDIO_EN : null);
 
   return {
     id: newId(),
     verdict: entry.verdict,
     title: entry.title,
+    titleEn: entry.titleEn,
     claim: entry.claimHi,
     claimEn: entry.claimEn,
     scriptHi: entry.scriptHi,
     scriptEn: entry.scriptEn,
     sources: entry.sources,
     audioUrl: audio,
+    audioUrlEn: audioEn,
     engine,
     confidence: Number(confidence.toFixed(2)),
     checkedAgainst: CHECKED_AGAINST,
@@ -71,13 +80,15 @@ export function buildRefusal(args: BuildArgs): CheckResult {
   return {
     id: newId(),
     verdict: "unverified",
-    title: "कोई verified सोर्स नहीं मिला",
+    title: REFUSAL_TITLE,
+    titleEn: REFUSAL_TITLE_EN,
     claim: args.claim,
     claimEn: "",
     scriptHi: REFUSAL_HI,
     scriptEn: REFUSAL_EN,
     sources: [],
     audioUrl: REFUSAL_AUDIO,
+    audioUrlEn: REFUSAL_AUDIO_EN,
     engine: args.engine,
     confidence: 0,
     checkedAgainst: CHECKED_AGAINST,

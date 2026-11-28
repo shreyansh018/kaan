@@ -242,10 +242,10 @@
   <div class="kicker">2 · Solution</div>
   <h2>Same shape as the misinformation: audio in, audio out.</h2>
   <div class="flow">
-    <div class="step"><div class="n">01</div><div class="t">Forward the note</div><div class="d">Any language, any length. Or speak it, or paste it.</div></div>
+    <div class="step"><div class="n">01</div><div class="t">Forward the note</div><div class="d">Speak it, upload the file, or paste the text.</div></div>
     <div class="step"><div class="n">02</div><div class="t">One claim</div><div class="d">A 40-second ramble is reduced to the single checkable assertion.</div></div>
     <div class="step"><div class="n">03</div><div class="t">Verified source</div><div class="d">Matched against PIB Fact Check, WHO, Ministry of Health.</div></div>
-    <div class="step"><div class="n">04</div><div class="t">20-second verdict</div><div class="d">Spoken in the same language. The source is named aloud.</div></div>
+    <div class="step"><div class="n">04</div><div class="t">20-second verdict</div><div class="d">Spoken in Hindi or English, as chosen. The source is named aloud.</div></div>
     <div class="step"><div class="n">05</div><div class="t">Forward it back</div><div class="d">A clean audio clip that can return to the group it came from.</div></div>
   </div>
   <div class="cols" style="margin-top:4mm">
@@ -314,11 +314,11 @@
   <div class="cols">
     <div>
       <ul>
-        <li><strong>3 bundled Hindi voice notes</strong> with real neural audio, committed to the repo.</li>
-        <li><strong>10 curated verified claims</strong> with named sources and dates.</li>
+        <li><strong>3 bundled Hindi voice notes</strong> with real neural audio, plus <strong>10 curated verified claims</strong> with named sources and dates.</li>
+        <li><strong>Three ways in</strong>: speak it, upload the audio file (for anyone who cannot speak), or paste the text.</li>
         <li><strong>Claim extraction + matching</strong> written from scratch: weighted token signatures, split by script, 1–5 ms per check.</li>
         <li><strong>Refusal path</strong> with its own spoken answer.</li>
-        <li><strong>Audio verdict</strong> out: 20–26 seconds, source named aloud.</li>
+        <li><strong>Audio verdict out</strong> in Hindi and English — the toggle switches the spoken answer too, not just the labels.</li>
         <li><strong>Forward actions</strong>: download the clip, or share via WhatsApp.</li>
       </ul>
     </div>
@@ -327,7 +327,7 @@
         <h3>Runs anywhere</h3>
         <p>
           <code>docker compose up</code> → port 3000. No <code>.env</code>, no
-          secret keys, no network calls at runtime. ~2,960 lines of our own code.
+          secret keys, no network calls at runtime. ~3,950 lines of our own code.
         </p>
       </div>
       <div class="card">
@@ -358,13 +358,13 @@
       </tr>
       <tr>
         <td>Bundled TTS audio<br/><span class="small">pre-generated, committed</span></td>
-        <td>Verdict voice</td>
-        <td>No runtime dependency at all for known claims. New text falls back to the browser's own Hindi voice, then to on-screen text.</td>
+        <td>Verdict voice, both languages</td>
+        <td>No runtime dependency at all for known claims — Hindi and English tracks both ship in the image. New text falls back to the browser's own voice, then to on-screen text.</td>
       </tr>
       <tr>
-        <td>Browser speech recognition<br/><span class="small">Web Speech API</span></td>
-        <td>Live microphone input</td>
-        <td>Optional enhancement. Every bundled note ships with its transcript, and the paste box works everywhere.</td>
+        <td>Speech → text<br/><span class="small">Web Speech API · Whisper if keyed</span></td>
+        <td>Live microphone and audio upload</td>
+        <td>Optional. The bundled notes ship with transcripts and are recognised by fingerprint with no key at all; with no key, unknown uploads say so and ask for text instead of guessing.</td>
       </tr>
       <tr>
         <td>Optional LLM<br/><span class="small">OpenAI, if a key exists</span></td>

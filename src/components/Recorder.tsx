@@ -1,12 +1,14 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { useLang } from "./LangProvider";
 import { IconMic } from "./icons";
 
 /**
  * Live microphone input via the browser's Web Speech API.
- * It is an enhancement only: if the browser has no recogniser, the paste
- * box below still works, so the product never depends on it.
+ * It is an enhancement only: if the browser has no recogniser, the upload
+ * control and the paste box below still work, so the product never depends
+ * on it.
  */
 
 type RecognitionResult = {
@@ -47,13 +49,19 @@ type Props = {
   disabled?: boolean;
 };
 
+type ErrorKind = "mic" | "start" | null;
+
 export function Recorder({ onTranscript, disabled }: Props) {
+  const { t, lang } = useLang();
   const [supported, setSupported] = useState<boolean | null>(null);
   const [listening, setListening] = useState(false);
   const [live, setLive] = useState("");
-  const [lang, setLang] = useState("hi-IN");
-  const [error, setError] = useState<string | null>(null);
+  const [error, setError] = useState<ErrorKind>(null);
   const recRef = useRef<Recognition | null>(null);
+
+  // Follow the interface language unless the user overrides it.
+  const [recogLang, setRecogLang] = useState<string | null>(null);
+  const effectiveLang = recogLang ?? (lang === "en" ? "en-IN" : "hi-IN");
 
   useEffect(() => {
     setSupported(getCtor() !== null);
@@ -67,7 +75,7 @@ export function Recorder({ onTranscript, disabled }: Props) {
     if (!Ctor) return;
 
     const recognition = new Ctor();
-    recognition.lang = lang;
+    recognition.lang = effectiveLang;
     recognition.continuous = false;
     recognition.interimResults = true;
 
@@ -86,7 +94,7 @@ export function Recorder({ onTranscript, disabled }: Props) {
 
     recognition.onerror = () => {
       setListening(false);
-      setError("Mic se sun nahi paye. Neeche likhkar bhej dein.");
+      setError("mic");
     };
 
     recognition.onend = () => {
@@ -103,7 +111,7 @@ export function Recorder({ onTranscript, disabled }: Props) {
       recognition.start();
     } catch {
       setListening(false);
-      setError("Mic shuru nahi ho paya. Neeche likhkar bhej dein.");
+      setError("start");
     }
   }
 
@@ -117,12 +125,9 @@ export function Recorder({ onTranscript, disabled }: Props) {
         {supported === false ? (
           <div className="recorder-unsupported">
             <span className="recorder-unsupported-title">
-              Live recording is not available in this browser
+              {t.recorderUnsupportedTitle}
             </span>
-            <span>
-              Chrome and Edge support it. You can still paste or type the note
-              below — the check works exactly the same.
-            </span>
+            <span>{t.recorderUnsupportedBody}</span>
           </div>
         ) : (
           <button
@@ -130,7 +135,7 @@ export function Recorder({ onTranscript, disabled }: Props) {
             className={`mic ${listening ? "is-listening" : ""}`}
             onClick={listening ? stop : start}
             disabled={disabled || supported === null}
-            aria-label={listening ? "Stop recording" : "Record a voice note"}
+            aria-label={listening ? t.recorderStopAria : t.recorderAria}
           >
             <IconMic size={22} />
           </button>
@@ -138,20 +143,18 @@ export function Recorder({ onTranscript, disabled }: Props) {
 
         <div className="recorder-copy">
           <span className="recorder-title">
-            {listening ? "सुन रहे हैं…" : "बोलिए"}
+            {listening ? t.recorderListening : t.recorderIdle}
           </span>
           <span className="recorder-sub">
-            {listening
-              ? "Speak the forwarded note out loud, then tap to stop."
-              : "Or type / paste the note on the right."}
+            {listening ? t.recorderSubListening : t.recorderSubIdle}
           </span>
         </div>
 
         <select
           className="recorder-lang"
-          value={lang}
-          onChange={(event) => setLang(event.target.value)}
-          aria-label="Recognition language"
+          value={effectiveLang}
+          onChange={(event) => setRecogLang(event.target.value)}
+          aria-label={t.recognitionLang}
         >
           <option value="hi-IN">हिंदी</option>
           <option value="en-IN">English</option>
@@ -159,7 +162,8 @@ export function Recorder({ onTranscript, disabled }: Props) {
       </div>
 
       {listening && live ? <p className="recorder-live">{live}</p> : null}
-      {error ? <p className="recorder-error">{error}</p> : null}
+      {error === "mic" ? <p className="recorder-error">{t.recorderErrorMic}</p> : null}
+      {error === "start" ? <p className="recorder-error">{t.recorderErrorStart}</p> : null}
     </div>
   );
 }

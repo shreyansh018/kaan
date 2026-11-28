@@ -1,0 +1,23 @@
+[
+  {
+    "seedId": "board",
+    "file": "note-board.mp3",
+    "sha256": "7b57e05822da435b4af194116b1338fbd99854ad3d3ec2a0f762bec221dc3ae2",
+    "bytes": 72720,
+    "durationSec": 12.1
+  },
+  {
+    "seedId": "hospital",
+    "file": "note-hospital.mp3",
+    "sha256": "c826aa7cbeb300bb546852b59188503a44bcfdab4174463814a11ec0dea26c5b",
+    "bytes": 100080,
+    "durationSec": 16.7
+  },
+  {
+    "seedId": "lemon",
+    "file": "note-lemon.mp3",
+    "sha256": "ccd8d7e79e6f24166a176a622a2897087ee59be4d39350af5e6eb2edb9d85695",
+    "bytes": 96336,
+    "durationSec": 16.1
+  }
+]

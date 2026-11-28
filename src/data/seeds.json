@@ -2,6 +2,7 @@
   {
     "id": "lemon",
     "label": "नींबू पानी से कोरोना",
+    "labelEn": "Lemon water for corona",
     "lang": "Hindi",
     "voice": "hi-IN-MadhurNeural",
     "audio": "/audio/note-lemon.mp3",
@@ -12,6 +13,7 @@
   {
     "id": "board",
     "label": "बोर्ड रिज़ल्ट दो हफ़्ते पहले",
+    "labelEn": "Board results two weeks early",
     "lang": "Hindi",
     "voice": "hi-IN-SwaraNeural",
     "audio": "/audio/note-board.mp3",
@@ -22,6 +24,7 @@
   {
     "id": "hospital",
     "label": "हॉस्पिटल की फ़र्ज़ी advisory",
+    "labelEn": "Fake hospital advisory",
     "lang": "Hindi",
     "voice": "hi-IN-MadhurNeural",
     "audio": "/audio/note-hospital.mp3",

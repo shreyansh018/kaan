@@ -4,7 +4,10 @@ import { useCallback, useEffect, useState } from "react";
 import seedsData from "@/data/seeds.json";
 import type { CheckResult, Seed } from "@/lib/types";
 import { VERDICT_LABEL } from "@/lib/verdict";
+import { AudioUpload } from "@/components/AudioUpload";
 import { CheckingView } from "@/components/CheckingView";
+import { LangToggle } from "@/components/LangToggle";
+import { useLang } from "@/components/LangProvider";
 import { Recorder } from "@/components/Recorder";
 import { SeedCard } from "@/components/SeedCard";
 import { VerdictView } from "@/components/VerdictView";
@@ -23,6 +26,7 @@ function RecentDot({ verdict }: { verdict: CheckResult["verdict"] }) {
 }
 
 export default function HomePage() {
+  const { t, lang } = useLang();
   const [phase, setPhase] = useState<Phase>("home");
   const [step, setStep] = useState(0);
   const [result, setResult] = useState<CheckResult | null>(null);
@@ -30,13 +34,15 @@ export default function HomePage() {
   const [error, setError] = useState<string | null>(null);
   const [engine, setEngine] = useState<Engine>("local");
   const [corpusSize, setCorpusSize] = useState<number>(0);
+  const [uploadEngine, setUploadEngine] = useState(false);
   const [recent, setRecent] = useState<CheckResult[]>([]);
 
   useEffect(() => {
     fetch("/api/health")
       .then((response) => response.json())
-      .then((data: { engine?: string; corpus?: number }) => {
+      .then((data: { engine?: string; corpus?: number; transcribe?: string }) => {
         setEngine(data.engine === "llm" ? "llm" : "local");
+        setUploadEngine(data.transcribe === "whisper");
         if (typeof data.corpus === "number") setCorpusSize(data.corpus);
       })
       .catch(() => {
@@ -55,10 +61,7 @@ export default function HomePage() {
 
   const saveRecent = useCallback((item: CheckResult) => {
     setRecent((previous) => {
-      const next = [
-        item,
-        ...previous.filter((entry) => entry.id !== item.id),
-      ].slice(0, 4);
+      const next = [item, ...previous.filter((entry) => entry.id !== item.id)].slice(0, 4);
       try {
         window.localStorage.setItem(RECENT_KEY, JSON.stringify(next));
       } catch {
@@ -72,7 +75,7 @@ export default function HomePage() {
     async (transcript: string, seedId: string | null) => {
       const clean = transcript.trim();
       if (!clean) {
-        setError("पहले कोई नोट लिखें या बोलें। (Add a note first.)");
+        setError(t.errorEmpty);
         return;
       }
 
@@ -95,14 +98,10 @@ export default function HomePage() {
           new Promise((resolve) => window.setTimeout(resolve, 1600)),
         ]);
 
-        const data = (await response.json()) as CheckResult & {
-          error?: string;
-        };
+        const data = (await response.json()) as CheckResult & { error?: string };
 
         if (!response.ok || data.error) {
-          throw new Error(
-            typeof data.error === "string" ? data.error : "check_failed",
-          );
+          throw new Error(typeof data.error === "string" ? data.error : "check_failed");
         }
 
         setResult(data);
@@ -110,15 +109,22 @@ export default function HomePage() {
         saveRecent(data);
         window.scrollTo({ top: 0, behavior: "smooth" });
       } catch {
-        setError(
-          "कुछ गड़बड़ हो गई। दोबारा कोशिश करें। (Something went wrong — try again.)",
-        );
+        setError(t.errorGeneric);
         setPhase("home");
       } finally {
         timers.forEach((timer) => window.clearTimeout(timer));
       }
     },
-    [saveRecent],
+    [saveRecent, t],
+  );
+
+  /** An uploaded file becomes the note, and the check runs straight away. */
+  const onUploaded = useCallback(
+    (transcript: string, seedId: string | null) => {
+      setText(transcript);
+      void runCheck(transcript, seedId);
+    },
+    [runCheck],
   );
 
   function reset() {
@@ -142,35 +148,33 @@ export default function HomePage() {
           <span className="brand-mark">क</span>
           <div className="brand-text">
             <strong>Kaan</strong>
-            <span>सुनो, फिर मानो</span>
+            <span>{t.brandTag}</span>
           </div>
         </div>
-        <span className={`chip ${engine === "llm" ? "chip--on" : ""}`}>
-          {engine === "llm"
-            ? "AI extraction on"
-            : "Local matcher · no key needed"}
-        </span>
+
+        <div className="topbar-right">
+          <LangToggle />
+          <span className={`chip ${engine === "llm" ? "chip--on" : ""}`}>
+            {engine === "llm" ? t.chipLlm : t.chipLocal}
+          </span>
+        </div>
       </header>
 
       <section className="hero">
+        <p className="eyebrow">{t.eyebrow}</p>
         <h1>
-          एक वॉइस नोट भेजिए।
+          {t.heroLine1}
           <br />
-          <em>20 सेकंड में सच।</em>
+          <em>{t.heroLine2}</em>
         </h1>
-        <p className="lede">
-          Forwarded WhatsApp voice notes are how misinformation travels in India
-          — and every fact-checker only reads text. Kaan listens to the note,
-          finds the one checkable claim, and answers in the same language, with
-          the source named aloud.
-        </p>
+        <p className="lede">{t.lede}</p>
       </section>
 
       <div className="grid">
         <section className="panel panel--main">
           <div className="panel-head">
-            <h2 className="panel-title">Try a forwarded note</h2>
-            <span className="panel-hint">3 bundled notes · works offline</span>
+            <h2 className="panel-title">{t.tryTitle}</h2>
+            <span className="panel-hint">{t.tryHint}</span>
           </div>
 
           <div className="seeds">
@@ -185,28 +189,29 @@ export default function HomePage() {
           </div>
 
           <div className="composer">
-            <Recorder
-              onTranscript={(value) => setText(value)}
+            <Recorder onTranscript={(value) => setText(value)} disabled={phase !== "home"} />
+
+            <AudioUpload
+              onTranscript={onUploaded}
               disabled={phase !== "home"}
+              engineOn={uploadEngine}
             />
 
             <div className="composer-input">
               <label className="composer-label" htmlFor="note">
-                या नोट लिखें / पेस्ट करें
+                {t.composerLabel}
               </label>
               <textarea
                 id="note"
                 className="textarea"
                 value={text}
                 onChange={(event) => setText(event.target.value)}
-                placeholder="Forwarded note यहाँ पेस्ट करें… / paste the forwarded note here"
+                placeholder={t.composerPlaceholder}
                 rows={4}
               />
               <div className="composer-actions">
                 <span className="counter">
-                  {text.trim()
-                    ? `${text.trim().split(/\s+/).length} words`
-                    : "Hindi, Hinglish or English"}
+                  {text.trim() ? t.words(text.trim().split(/\s+/).length) : t.langHint}
                 </span>
                 <button
                   type="button"
@@ -214,7 +219,7 @@ export default function HomePage() {
                   onClick={() => void runCheck(text, null)}
                   disabled={!text.trim()}
                 >
-                  Check करें
+                  {t.checkBtn}
                   <IconArrowRight size={16} />
                 </button>
               </div>
@@ -226,67 +231,45 @@ export default function HomePage() {
 
         <aside className="side">
           <section className="panel">
-            <h2 className="panel-title">कैसे काम करता है · how it works</h2>
+            <h2 className="panel-title">{t.howTitle}</h2>
             <ol className="steps">
-              <li>
-                <span className="step-num">1</span>
-                <div>
-                  <strong>Listen</strong>
-                  <p>
-                    Transcribes the note in the language it was actually spoken
-                    in.
-                  </p>
-                </div>
-              </li>
-              <li>
-                <span className="step-num">2</span>
-                <div>
-                  <strong>One claim</strong>
-                  <p>
-                    Pulls the single checkable assertion out of a 40-second
-                    ramble.
-                  </p>
-                </div>
-              </li>
-              <li>
-                <span className="step-num">3</span>
-                <div>
-                  <strong>Check &amp; speak</strong>
-                  <p>
-                    Matches verified sources and replies in 20 seconds of audio.
-                  </p>
-                </div>
-              </li>
+              {t.steps.map((item, index) => (
+                <li key={item.title}>
+                  <span className="step-num">{index + 1}</span>
+                  <div>
+                    <strong>{item.title}</strong>
+                    <p>{item.body}</p>
+                  </div>
+                </li>
+              ))}
             </ol>
           </section>
 
           <section className="panel">
-            <h2 className="panel-title">Kaan क्या नहीं करेगा</h2>
+            <h2 className="panel-title">{t.rulesTitle}</h2>
             <ul className="rules">
-              <li>
-                <span className="rule-icon rule-icon--no">
-                  <IconX size={13} />
-                </span>
-                No verdict without a named source
-              </li>
-              <li>
-                <span className="rule-icon rule-icon--no">
-                  <IconX size={13} />
-                </span>
-                No politics, no medical advice
-              </li>
-              <li>
-                <span className="rule-icon rule-icon--yes">
-                  <IconCheck size={13} />
-                </span>
-                Refuses when it cannot verify
-              </li>
+              {t.rules.map((rule, index) => (
+                <li key={rule}>
+                  <span
+                    className={`rule-icon ${
+                      index === t.rules.length - 1 ? "rule-icon--yes" : "rule-icon--no"
+                    }`}
+                  >
+                    {index === t.rules.length - 1 ? (
+                      <IconCheck size={13} />
+                    ) : (
+                      <IconX size={13} />
+                    )}
+                  </span>
+                  {rule}
+                </li>
+              ))}
             </ul>
           </section>
 
           {recent.length > 0 ? (
             <section className="panel">
-              <h2 className="panel-title">हाल की जाँच · recent</h2>
+              <h2 className="panel-title">{t.recentTitle}</h2>
               <ul className="recent">
                 {recent.map((item) => (
                   <li key={item.id}>
@@ -297,14 +280,14 @@ export default function HomePage() {
                         setPhase("result");
                       }}
                     >
-                      <span
-                        className={`recent-dot recent-dot--${item.verdict}`}
-                      >
+                      <span className={`recent-dot recent-dot--${item.verdict}`}>
                         <RecentDot verdict={item.verdict} />
                       </span>
-                      <span className="recent-title">{item.title}</span>
+                      <span className="recent-title">
+                        {lang === "hi" ? item.title : item.titleEn || item.title}
+                      </span>
                       <span className="recent-verdict">
-                        {VERDICT_LABEL[item.verdict].en}
+                        {VERDICT_LABEL[item.verdict][lang]}
                       </span>
                     </button>
                   </li>
@@ -316,10 +299,7 @@ export default function HomePage() {
       </div>
 
       <footer className="footer">
-        <span>
-          Kaan · Round 2 build · {corpusSize > 0 ? corpusSize : 10} curated
-          verified claims · audio bundled, no API key required
-        </span>
+        <span>{t.footer(corpusSize > 0 ? corpusSize : 10)}</span>
       </footer>
     </main>
   );

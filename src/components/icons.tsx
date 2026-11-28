@@ -92,12 +92,21 @@ export function IconExternal({ size = 15, className }: IconProps) {
   );
 }
 
-export function IconDownload({ size = 16, className }: IconProps) {
-  return (
+export function IconDownload({ size = 16, className }: IconProps) {  return (
     <svg {...stroke(size)} className={className} aria-hidden="true">
       <path d="M12 4v11" />
       <path d="m7.5 10.5 4.5 4.5 4.5-4.5" />
       <path d="M5 20h14" />
+    </svg>
+  );
+}
+
+export function IconUpload({ size = 16, className }: IconProps) {
+  return (
+    <svg {...stroke(size)} className={className} aria-hidden="true">
+      <path d="M12 16V4" />
+      <path d="m7.5 8.5 4.5-4.5 4.5 4.5" />
+      <path d="M5 15v4a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-4" />
     </svg>
   );
 }

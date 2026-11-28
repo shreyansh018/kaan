@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import type { CheckResult } from "@/lib/types";
+import { useLang } from "./LangProvider";
 import { IconPause, IconPlay } from "./icons";
 
 const BARS = Array.from({ length: 34 }, (_, index) => {
@@ -17,6 +18,7 @@ function formatTime(seconds: number): string {
 }
 
 export function VerdictAudio({ result }: { result: CheckResult }) {
+  const { t, lang } = useLang();
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const [playing, setPlaying] = useState(false);
   const [progress, setProgress] = useState(0);
@@ -24,7 +26,12 @@ export function VerdictAudio({ result }: { result: CheckResult }) {
   const [current, setCurrent] = useState(0);
   const [voiceWarning, setVoiceWarning] = useState(false);
 
-  const bundled = Boolean(result.audioUrl);
+  // The verdict follows the interface language; the Hindi recording is the
+  // fallback if an English one is missing.
+  const src = lang === "hi" ? result.audioUrl : (result.audioUrlEn ?? result.audioUrl);
+  const bundled = Boolean(src);
+  const script = lang === "hi" ? result.scriptHi : result.scriptEn;
+  const speechLang = lang === "hi" ? "hi-IN" : "en-IN";
 
   useEffect(() => {
     if (!bundled) return;
@@ -50,7 +57,20 @@ export function VerdictAudio({ result }: { result: CheckResult }) {
       el.removeEventListener("loadedmetadata", onMeta);
       el.removeEventListener("ended", onEnd);
     };
-  }, [bundled, result.audioUrl]);
+  }, [bundled, src]);
+
+  // Switching language mid-playback should not leave the old recording running.
+  useEffect(() => {
+    setPlaying(false);
+    setProgress(0);
+    setCurrent(0);
+    setDuration(0);
+    setVoiceWarning(false);
+    audioRef.current?.pause();
+    if (typeof window !== "undefined" && "speechSynthesis" in window) {
+      window.speechSynthesis.cancel();
+    }
+  }, [src, script]);
 
   async function toggle() {
     if (bundled) {
@@ -70,7 +90,7 @@ export function VerdictAudio({ result }: { result: CheckResult }) {
       return;
     }
 
-    // No bundled audio: fall back to the device's own Hindi voice.
+    // No bundled audio: fall back to the device's own voice.
     if (typeof window === "undefined" || !("speechSynthesis" in window)) {
       setVoiceWarning(true);
       return;
@@ -82,17 +102,17 @@ export function VerdictAudio({ result }: { result: CheckResult }) {
       return;
     }
 
-    const utterance = new SpeechSynthesisUtterance(result.scriptHi);
-    utterance.lang = "hi-IN";
+    const utterance = new SpeechSynthesisUtterance(script);
+    utterance.lang = speechLang;
     utterance.rate = 0.95;
 
-    const hindiVoice = window.speechSynthesis
+    const match = window.speechSynthesis
       .getVoices()
-      .find((voice) => voice.lang.toLowerCase().startsWith("hi"));
+      .find((voice) => voice.lang.toLowerCase().startsWith(speechLang.slice(0, 2)));
 
-    if (hindiVoice) {
-      utterance.voice = hindiVoice;
-    } else if (/[\u0900-\u097F]/.test(result.scriptHi)) {
+    if (match) {
+      utterance.voice = match;
+    } else {
       setVoiceWarning(true);
       return;
     }
@@ -111,13 +131,13 @@ export function VerdictAudio({ result }: { result: CheckResult }) {
           type="button"
           className={`audio-play ${playing ? "is-playing" : ""}`}
           onClick={toggle}
-          aria-label={playing ? "Pause verdict" : "Play verdict"}
+          aria-label={playing ? t.audioPauseAria : t.audioPlayAria}
         >
           {playing ? <IconPause size={22} /> : <IconPlay size={22} />}
         </button>
 
         <div className="audio-middle">
-          <span className="audio-label">जवाब सुनें · hear the verdict</span>
+          <span className="audio-label">{t.audioLabel}</span>
           <div className={`wave ${playing ? "is-playing" : ""}`} aria-hidden="true">
             {BARS.map((height, index) => (
               <span
@@ -138,18 +158,17 @@ export function VerdictAudio({ result }: { result: CheckResult }) {
         <span style={{ width: `${Math.round(progress * 100)}%` }} />
       </div>
 
-      <p className="audio-hi">{result.scriptHi}</p>
-      <p className="audio-en">{result.scriptEn}</p>
+      <p className="audio-hi">{script}</p>
 
-      {voiceWarning ? (
-        <p className="audio-warn">
-          इस डिवाइस पर हिंदी आवाज़ नहीं है — ऊपर का टेक्स्ट पढ़ें। (No Hindi voice
-          on this device — the verdict text is above.)
-        </p>
-      ) : null}
+      {voiceWarning ? <p className="audio-warn">{t.audioWarn}</p> : null}
 
       {bundled ? (
-        <audio ref={audioRef} src={result.audioUrl ?? undefined} preload="metadata" />
+        <audio
+          key={src}
+          ref={audioRef}
+          src={src ?? undefined}
+          preload="metadata"
+        />
       ) : null}
     </section>
   );

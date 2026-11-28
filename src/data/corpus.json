@@ -2,10 +2,28 @@
   {
     "id": "lemon-corona",
     "title": "नींबू पानी से कोरोना",
+    "titleEn": "Lemon water for corona",
     "keywords": [
-      "nimbu", "lemon", "garam", "hot", "paani", "water", "corona", "covid",
-      "khatam", "cure", "theek", "peena", "drink", "virus",
-      "नींबू", "पानी", "कोरोना", "खत्म", "ठीक", "पीना"
+      "nimbu",
+      "lemon",
+      "garam",
+      "hot",
+      "paani",
+      "water",
+      "corona",
+      "covid",
+      "khatam",
+      "cure",
+      "theek",
+      "peena",
+      "drink",
+      "virus",
+      "नींबू",
+      "पानी",
+      "कोरोना",
+      "खत्म",
+      "ठीक",
+      "पीना"
     ],
     "verdict": "galat",
     "claimHi": "गर्म पानी में नींबू डालकर पीने से कोरोना खत्म हो जाता है",
@@ -21,15 +39,30 @@
         "noteEn": "No food or drink cures COVID-19."
       }
     ],
-    "audio": "/audio/verdict-lemon-corona.mp3"
+    "audio": "/audio/verdict-lemon-corona.mp3",
+    "audioEn": "/audio/verdict-lemon-corona-en.mp3"
   },
   {
     "id": "board-result",
     "title": "बोर्ड रिज़ल्ट दो हफ़्ते पहले",
+    "titleEn": "Board results two weeks early",
     "keywords": [
-      "board", "result", "hafte", "weeks", "pehle", "early", "date",
-      "cbse", "exam", "students", "declare",
-      "बोर्ड", "रिज़ल्ट", "हफ़्ते", "पहले", "तारीख"
+      "board",
+      "result",
+      "hafte",
+      "weeks",
+      "pehle",
+      "early",
+      "date",
+      "cbse",
+      "exam",
+      "students",
+      "declare",
+      "बोर्ड",
+      "रिज़ल्ट",
+      "हफ़्ते",
+      "पहले",
+      "तारीख"
     ],
     "verdict": "unverified",
     "claimHi": "इस साल बोर्ड का रिज़ल्ट दो हफ़्ते पहले आ रहा है",
@@ -45,15 +78,30 @@
         "noteEn": "Official dates are only published on the board's own site."
       }
     ],
-    "audio": "/audio/verdict-board-result.mp3"
+    "audio": "/audio/verdict-board-result.mp3",
+    "audioEn": "/audio/verdict-board-result-en.mp3"
   },
   {
     "id": "hospital-advisory",
     "title": "हॉस्पिटल की फ़र्ज़ी advisory",
+    "titleEn": "Fake hospital advisory",
     "keywords": [
-      "hospital", "advisory", "bachche", "children", "40", "bharti",
-      "admitted", "school", "band", "fake", "parents",
-      "हॉस्पिटल", "अस्पताल", "बच्चे", "स्कूल", "भर्ती"
+      "hospital",
+      "advisory",
+      "bachche",
+      "children",
+      "40",
+      "bharti",
+      "admitted",
+      "school",
+      "band",
+      "fake",
+      "parents",
+      "हॉस्पिटल",
+      "अस्पताल",
+      "बच्चे",
+      "स्कूल",
+      "भर्ती"
     ],
     "verdict": "galat",
     "claimHi": "सिटी हॉस्पिटल में नई बीमारी से 40 बच्चे भर्ती, स्कूल बंद करने की सलाह",
@@ -69,15 +117,27 @@
         "noteEn": "Advisories circulated without an official handle have been found to be fake."
       }
     ],
-    "audio": "/audio/verdict-hospital-advisory.mp3"
+    "audio": "/audio/verdict-hospital-advisory.mp3",
+    "audioEn": "/audio/verdict-hospital-advisory-en.mp3"
   },
   {
     "id": "5g-virus",
     "title": "5G टावर से वायरस",
+    "titleEn": "5G towers and the virus",
     "keywords": [
-      "5g", "tower", "virus", "corona", "failta", "spreads",
-      "radiation", "network", "signal",
-      "5जी", "टावर", "वायरस", "फैलता"
+      "5g",
+      "tower",
+      "virus",
+      "corona",
+      "failta",
+      "spreads",
+      "radiation",
+      "network",
+      "signal",
+      "5जी",
+      "टावर",
+      "वायरस",
+      "फैलता"
     ],
     "verdict": "galat",
     "claimHi": "5G टावर से कोरोना वायरस फैलता है",
@@ -93,15 +153,28 @@
         "noteEn": "5G networks do not spread viruses."
       }
     ],
-    "audio": "/audio/verdict-5g-virus.mp3"
+    "audio": "/audio/verdict-5g-virus.mp3",
+    "audioEn": "/audio/verdict-5g-virus-en.mp3"
   },
   {
     "id": "garlic-bp",
     "title": "लेहसुन से ब्लड प्रेशर",
+    "titleEn": "Garlic for blood pressure",
     "keywords": [
-      "lehsun", "garlic", "bp", "blood", "pressure", "dawa", "medicine",
-      "theek", "cure", "control",
-      "लेहसुन", "ब्लड", "प्रेशर", "दवा"
+      "lehsun",
+      "garlic",
+      "bp",
+      "blood",
+      "pressure",
+      "dawa",
+      "medicine",
+      "theek",
+      "cure",
+      "control",
+      "लेहसुन",
+      "ब्लड",
+      "प्रेशर",
+      "दवा"
     ],
     "verdict": "galat",
     "claimHi": "लेहसुन खाने से ब्लड प्रेशर हमेशा के लिए ठीक हो जाता है",
@@ -117,15 +190,29 @@
         "noteEn": "Hypertension is managed with medication and lifestyle, not a single food."
       }
     ],
-    "audio": "/audio/verdict-garlic-bp.mp3"
+    "audio": "/audio/verdict-garlic-bp.mp3",
+    "audioEn": "/audio/verdict-garlic-bp-en.mp3"
   },
   {
     "id": "aadhaar-link",
     "title": "आधार लिंक नहीं तो अकाउंट बंद",
+    "titleEn": "No Aadhaar, account closed",
     "keywords": [
-      "aadhaar", "bank", "account", "link", "band", "close", "freeze",
-      "block", "niyam", "rule",
-      "आधार", "बैंक", "अकाउंट", "लिंक", "बंद"
+      "aadhaar",
+      "bank",
+      "account",
+      "link",
+      "band",
+      "close",
+      "freeze",
+      "block",
+      "niyam",
+      "rule",
+      "आधार",
+      "बैंक",
+      "अकाउंट",
+      "लिंक",
+      "बंद"
     ],
     "verdict": "galat",
     "claimHi": "आधार बैंक से लिंक न हो तो अकाउंट बंद हो जाएगा",
@@ -141,15 +228,29 @@
         "noteEn": "There is no rule that closes accounts for an unlinked Aadhaar."
       }
     ],
-    "audio": "/audio/verdict-aadhaar-link.mp3"
+    "audio": "/audio/verdict-aadhaar-link.mp3",
+    "audioEn": "/audio/verdict-aadhaar-link-en.mp3"
   },
   {
     "id": "free-laptop",
     "title": "फ्री लैपटॉप स्कीम",
+    "titleEn": "Free laptop scheme",
     "keywords": [
-      "laptop", "free", "sarkar", "government", "scheme", "students",
-      "link", "click", "form", "apply",
-      "लैपटॉप", "सरकार", "स्कीम", "स्टूडेंट", "लिंक"
+      "laptop",
+      "free",
+      "sarkar",
+      "government",
+      "scheme",
+      "students",
+      "link",
+      "click",
+      "form",
+      "apply",
+      "लैपटॉप",
+      "सरकार",
+      "स्कीम",
+      "स्टूडेंट",
+      "लिंक"
     ],
     "verdict": "galat",
     "claimHi": "सरकार सभी स्टूडेंट्स को फ्री लैपटॉप दे रही है, लिंक पर क्लिक करें",
@@ -165,15 +266,28 @@
         "noteEn": "The link circulated as a free-laptop scheme is fake."
       }
     ],
-    "audio": "/audio/verdict-free-laptop.mp3"
+    "audio": "/audio/verdict-free-laptop.mp3",
+    "audioEn": "/audio/verdict-free-laptop-en.mp3"
   },
   {
     "id": "onion-flu",
     "title": "प्याज़ से फ्लू",
+    "titleEn": "Onion for flu",
     "keywords": [
-      "pyaaz", "onion", "flu", "kamre", "room", "sardi", "cold",
-      "theek", "cure", "kaat",
-      "प्याज़", "फ्लू", "कमरे", "ठीक"
+      "pyaaz",
+      "onion",
+      "flu",
+      "kamre",
+      "room",
+      "sardi",
+      "cold",
+      "theek",
+      "cure",
+      "kaat",
+      "प्याज़",
+      "फ्लू",
+      "कमरे",
+      "ठीक"
     ],
     "verdict": "unverified",
     "claimHi": "कमरे में प्याज़ काटकर रखने से फ्लू ठीक हो जाता है",
@@ -181,15 +295,29 @@
     "scriptHi": "आपके नोट में कहा गया है कि कमरे में प्याज़ काटकर रखने से फ्लू ठीक हो जाता है। इसका कोई वैज्ञानिक आधार नहीं मिला — हम इसे verify नहीं कर पाए। फ्लू के लिए डॉक्टर की सलाह लें।",
     "scriptEn": "Your note claims a cut onion in the room cures flu. We found no scientific basis for this — we cannot verify it. Please consult a doctor for flu.",
     "sources": [],
-    "audio": "/audio/verdict-onion-flu.mp3"
+    "audio": "/audio/verdict-onion-flu.mp3",
+    "audioEn": "/audio/verdict-onion-flu-en.mp3"
   },
   {
     "id": "upi-cashback",
     "title": "UPI कैशबैक ऑफ़र",
+    "titleEn": "UPI cashback offer",
     "keywords": [
-      "upi", "cashback", "paisa", "money", "bhejne", "send", "percent",
-      "offer", "gpay", "phonepe", "paytm", "5",
-      "कैशबैक", "पैसा", "यूपीआई"
+      "upi",
+      "cashback",
+      "paisa",
+      "money",
+      "bhejne",
+      "send",
+      "percent",
+      "offer",
+      "gpay",
+      "phonepe",
+      "paytm",
+      "5",
+      "कैशबैक",
+      "पैसा",
+      "यूपीआई"
     ],
     "verdict": "galat",
     "claimHi": "UPI से पैसा भेजने पर 5% कैशबैक मिल रहा है",
@@ -205,15 +333,28 @@
         "noteEn": "Being asked to send money for cashback is fraud."
       }
     ],
-    "audio": "/audio/verdict-upi-cashback.mp3"
+    "audio": "/audio/verdict-upi-cashback.mp3",
+    "audioEn": "/audio/verdict-upi-cashback-en.mp3"
   },
   {
     "id": "neem-immunity",
     "title": "नीम और इम्युनिटी",
+    "titleEn": "Neem and immunity",
     "keywords": [
-      "neem", "immunity", "bimari", "disease", "roz", "daily", "khana",
-      "eat", "sehat", "health",
-      "नीम", "बीमारी", "रोज़", "सेहत"
+      "neem",
+      "immunity",
+      "bimari",
+      "disease",
+      "roz",
+      "daily",
+      "khana",
+      "eat",
+      "sehat",
+      "health",
+      "नीम",
+      "बीमारी",
+      "रोज़",
+      "सेहत"
     ],
     "verdict": "unverified",
     "claimHi": "रोज़ नीम खाने से कोई बीमारी नहीं होती",
@@ -221,6 +362,7 @@
     "scriptHi": "आपके नोट में कहा गया है कि रोज़ नीम खाने से कोई बीमारी नहीं होती। इसका कोई verified मेडिकल सोर्स नहीं मिला — हम इसे verify नहीं कर पाए। इम्युनिटी के लिए नींद, पोषण और वैक्सीन ज़रूरी हैं।",
     "scriptEn": "Your note claims eating neem daily means you will never fall ill. We found no verified medical source — we cannot verify it. Immunity depends on sleep, nutrition and vaccines.",
     "sources": [],
-    "audio": "/audio/verdict-neem-immunity.mp3"
+    "audio": "/audio/verdict-neem-immunity.mp3",
+    "audioEn": "/audio/verdict-neem-immunity-en.mp3"
   }
 ]
