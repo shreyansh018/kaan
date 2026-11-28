@@ -161,7 +161,6 @@ export default function HomePage() {
       </header>
 
       <section className="hero">
-        <p className="eyebrow">{t.eyebrow}</p>
         <h1>
           {t.heroLine1}
           <br />
@@ -298,9 +297,6 @@ export default function HomePage() {
         </aside>
       </div>
 
-      <footer className="footer">
-        <span>{t.footer(corpusSize > 0 ? corpusSize : 10)}</span>
-      </footer>
     </main>
   );
 }

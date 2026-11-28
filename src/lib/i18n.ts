@@ -21,7 +21,6 @@ const hi = {
   chipLlm: "AI extraction on",
   chipLocal: "Local matcher · no key needed",
 
-  eyebrow: "Round 2 · Build for Bharat · voice-first prototype",
   heroLine1: "एक वॉइस नोट भेजिए।",
   heroLine2: "20 सेकंड में सच।",
   lede: "Forwarded WhatsApp voice notes are how misinformation travels in India — and every fact-checker only reads text. Kaan listens to the note, finds the one checkable claim, and answers in the same language, with the source named aloud.",
@@ -135,8 +134,6 @@ const hi = {
   audioPlayAria: "जवाब सुनें",
   audioPauseAria: "जवाब रोकें",
   audioWarn: "इस डिवाइस पर इस भाषा की आवाज़ नहीं है — ऊपर का टेक्स्ट पढ़ें।",
-  footer: (n: number) =>
-    `Kaan · Round 2 build · ${n} curated verified claims · audio bundled, no API key required`,
 };
 
 const en: typeof hi = {
@@ -147,7 +144,6 @@ const en: typeof hi = {
   chipLlm: "AI extraction on",
   chipLocal: "Local matcher · no key needed",
 
-  eyebrow: "Round 2 · Build for Bharat · voice-first prototype",
   heroLine1: "Send a voice note.",
   heroLine2: "The truth in 20 seconds.",
   lede: "Forwarded WhatsApp voice notes are how misinformation travels in India — and every fact-checker only reads text. Kaan listens to the note, finds the one checkable claim, and answers in the same language, with the source named aloud.",
@@ -262,8 +258,6 @@ const en: typeof hi = {
   audioPauseAria: "Pause verdict",
   audioWarn:
     "This device has no voice for this language — the verdict text is above.",
-  footer: (n: number) =>
-    `Kaan · Round 2 build · ${n} curated verified claims · audio bundled, no API key required`,
 };
 
 export type Copy = typeof hi;
