@@ -18,7 +18,7 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="hi">
+    <html lang="en">
       <body>
         <LangProvider>{children}</LangProvider>
       </body>

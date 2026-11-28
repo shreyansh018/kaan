@@ -22,8 +22,8 @@ type LangContextValue = {
 const LangContext = createContext<LangContextValue | null>(null);
 
 export function LangProvider({ children }: { children: React.ReactNode }) {
-  // Hindi first: it is who the product is for. The stored choice wins on mount.
-  const [lang, setLangState] = useState<Lang>("hi");
+  // English by default; the stored choice wins on mount if present.
+  const [lang, setLangState] = useState<Lang>("en");
 
   useEffect(() => {
     try {

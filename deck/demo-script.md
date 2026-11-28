@@ -15,7 +15,7 @@ Capture **system audio** — the whole point is that the answer is spoken.
 2. Open `http://localhost:3000` in a fresh window, DevTools closed.
 3. Clear stored state so the first frame is clean:
    DevTools → Application → Local Storage → delete `kaan.recent.v1` and
-   `kaan.lang.v1` → reload. The page must open in **Hindi**.
+   `kaan.lang.v1` → reload. The page must open in **English**.
 4. Put a copy of `public/audio/note-hospital.mp3` on the Desktop, renamed
    `forwarded-note.mp3`. This is the file you will drag in — it is byte-identical
    to the bundled note, so it is recognised without any speech key.
